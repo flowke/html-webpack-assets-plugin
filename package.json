@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flowke/html-webpack-assets-plugin.git"
@@ -17,7 +14,7 @@
     "assets plugin",
     "plugin"
   ],
-  "author": "",
+  "author": "flowke",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/flowke/html-webpack-assets-plugin/issues"
