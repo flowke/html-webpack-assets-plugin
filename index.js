@@ -74,9 +74,11 @@ class AssetsAttr {
       let basename = path.basename(url, ext);
       let filePath = path.resolve(fileBase, url);
 
-      let hash = sha256.update(fs.readFileSync(filePath, {
+      let fileContent = fs.readFileSync(filePath, {
         encoding: 'utf8'
-      })).digest('hex').slice(0, 8);
+      });
+
+      let hash = sha256.update(fileContent).digest('hex').slice(0, 8);
 
       compilation.assets[`${basename}-${hash}${ext}`] = {
         source: () => fileContent,
