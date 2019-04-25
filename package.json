@@ -15,7 +15,7 @@
     "plugin"
   ],
   "author": "flowke",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/flowke/html-webpack-assets-plugin/issues"
   },
