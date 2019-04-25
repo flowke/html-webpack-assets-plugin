@@ -78,11 +78,10 @@ class AssetsAttr {
         encoding: 'utf8'
       })).digest('hex').slice(0, 8);
 
-      compilation.compiler.hooks.done.tapAsync('moveFile', (compilation, callBack) => {
-        compilation.compiler.outputFileSystem.copyFile(filePath, path.resolve(configOutputPath, `${basename}-${hash}${ext}`), err => {
-          callBack(err)
-        })
-      })
+      compilation.assets[`${basename}-${hash}${ext}`] = {
+        source: () => fileContent,
+        size: () => fileContent.length
+      }
 
       // 最终得到的publicPath
       url = configPublicPath + `${basename}-${hash}${ext}`;
