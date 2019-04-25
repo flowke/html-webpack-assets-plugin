@@ -11,7 +11,7 @@
     <img width="100" height="100" title="Webpack Plugin" src="http://michael-ciniawsky.github.io/postcss-load-plugins/logo.svg">
   </div>
   <h1>html-webpack-assets-plugin</h1>
-  <p>一个插件, 可以用于在 `html` 打包的 `js` 文件里修改 `script` 标签的属性, 或直接在 `html` 里引入本地 `js` 文件;</p>
+  <p>一个 `webpack` 插件, 用于在 `html-webpack-plugin` 将生成的 `html` 里, 对 script 标签进行操作, 可以往 `script` 标签添加属性 或 直接在 `html` 里插入本地 `js` 文件;</p>
 </div>
 
 

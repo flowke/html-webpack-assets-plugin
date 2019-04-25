@@ -33,7 +33,6 @@ class AssetsAttr {
       } else if (compilation.hooks.htmlWebpackPluginBeforeHtmlGeneration) {
         compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync('asstes', (data, cb) => {
           data.body = this.alterAssetTagsAsync(data.body, compilation)
-          // console.log(data.body[0].attributes);
           cb(null, data)
         });
       } else {
