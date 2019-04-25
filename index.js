@@ -78,7 +78,7 @@ class AssetsAttr {
         encoding: 'utf8'
       })).digest('hex').slice(0, 8);
 
-      compilation.compiler.hooks.afterEmit.tapAsync('moveFile', (compilation, callBack) => {
+      compilation.compiler.hooks.done.tapAsync('moveFile', (compilation, callBack) => {
         fs.copyFile(filePath, path.resolve(configOutputPath, `${basename}-${hash}${ext}`), err => {
           callBack(err)
         })

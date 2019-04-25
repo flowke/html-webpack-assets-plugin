@@ -53,12 +53,16 @@ module.exports = {
       new HtmlWebpackPlugin()
     ],
     new AssetsPlugin({
+      // 可选, 给所有 script 添加属性
       attrs: {
         'data-all': 'all'
       },
+      // 可选, 用于webpack 从入口打包而输出的 js 文件, 添加属性
       bundle: {
         'data-bundle': 'bundle'
       },
+
+      //可选, 插入 script, assets 应该是远程地址, 因为不用有文件输出到打包目录
       online: [
         {
           append: true, // assets 列表的资源会添加到插入到后面, 默认false
@@ -74,7 +78,10 @@ module.exports = {
           ]
         },
       ],
-      // 加载本地资源, 本地资源同时会打包到输出目录
+      // 可选
+      // 插入script, src最终应该指向本地文件,
+      // 本地资源会被复制到输出目录, 
+      // 并对文件名添加 contentHash
       local: {
         root: './', // 本地资源的相对根目录目录, 默认为 当前工作目录,
         src: [
@@ -188,17 +195,17 @@ dist
 }
 ```
 
-**bundle**
+**local**
 
-- local: 可选, 指定文件的根目录, 值相对路径则为当前的工作目录,
+- root: 可选, 指定文件的根目录, 值相对路径则为当前的工作目录,
 - src: 列出本地文件
 
 为 `webpack` 入口打包生成的 `script` 标签 添加属性
 
 ```
 {
-  bundle: {
-    local: <string>, // 可选, 默认: './', 
+  local: {
+    root: <string>, // 可选, 默认: './', 
     src: Array<string>
   }
 
