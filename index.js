@@ -55,7 +55,8 @@ class AssetsAttr {
       online = [],
       local = {
         root: './',
-        src: []
+        src: [],
+        chunkHash: false
       }
     } = this.op;
 
@@ -66,6 +67,7 @@ class AssetsAttr {
     let configOutputPath = compilation.outputOptions.path || '';
     let localRoot = local.root ? local.root : './';
     let localSrc = local.src ? local.src : [];
+    let localChunkHash = local.chunkHash===true ? local.chunkHash : false;
     let fileBase = path.resolve(cwd, localRoot);
 
     let localScripts = localSrc.map(url => {
@@ -78,15 +80,24 @@ class AssetsAttr {
         encoding: 'utf8'
       });
 
-      let hash = sha256.update(fileContent).digest('hex').slice(0, 8);
+      // local输出文件名
+      let fileName = '';
 
-      compilation.assets[`${basename}-${hash}${ext}`] = {
+      if (localChunkHash){
+        let hash = sha256.update(fileContent).digest('hex').slice(0, 8);
+        fileName = `${basename}-${hash}${ext}`;
+      }else{
+        fileName = `${basename}${ext}`;
+      }
+
+
+      compilation.assets[fileName] = {
         source: () => fileContent,
         size: () => fileContent.length
       }
 
       // 最终得到的publicPath
-      url = configPublicPath + `${basename}-${hash}${ext}`;
+      url = configPublicPath + fileName;
 
       return {
         tagName: 'script',
